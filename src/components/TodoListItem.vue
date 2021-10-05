@@ -1,6 +1,8 @@
 <template>
     <li>
-      <span class="item" :class="todoItem.done ? 'complete' : null" 
+      <span 
+      class="item" 
+      :class="todoItem.done ? 'complete' : null" 
       @click="toggleItem"> {{ todoItem.title }} </span>
       <button @click="removeItem">삭제</button>
     </li>

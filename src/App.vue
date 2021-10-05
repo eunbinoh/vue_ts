@@ -31,7 +31,7 @@ const storage = {
     const parsed =JSON.stringify(todoItems);
     localStorage.setItem(STORAGE_KEY, parsed);
   },
-  fetch() { 
+  fetch(): Todo[] { 
     const todoItems = localStorage.getItem(STORAGE_KEY) || "[]";
     const result = JSON.parse(todoItems);
     return result;
@@ -70,7 +70,17 @@ export default Vue.extend({
       this.todoText ="";
     },
     fetchTodoItems(){
-      this.todoItems = storage.fetch();
+      //axios.get('todos');
+      //sort 한글 오름/내림차순 정렬
+      this.todoItems = storage.fetch().sort((a,b) =>{
+        if(a.title<b.title){
+          return -1;
+        }
+        if(a.title>b.title){
+          return 1;
+        }
+        return 0;
+      });
     },
     removeTodoItem(index: number){
       console.log("remove index:", index);
